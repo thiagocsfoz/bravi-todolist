@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backendserver:
+    build: ./webservice/
+    ports:
+      - "8080:8080"
+    restart: always
+  frontend:
+    build: ./webapp/
+    links:
+      - "backendserver"
+    depends_on:
+      - "backendserver"
+    ports:
+      - "80:80"
